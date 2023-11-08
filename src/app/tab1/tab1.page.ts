@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from '../models/product.model';
 import { CartService } from '../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -37,7 +38,8 @@ export class Tab1Page {
     }
   ];
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService
+    , private router: Router) {
     this.products.push({
       name: "Aguacate",
       price: 100,
@@ -91,6 +93,12 @@ export class Tab1Page {
     product.photo = product.photo + i;
     this.cartService.addToCart(product);
     console.log(this.cartService.getCart());
+  }
+
+  public openAddProductPage() {
+    
+    this.router.navigate(['/add-product']);
+
   }
 
 
